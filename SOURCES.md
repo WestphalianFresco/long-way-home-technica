@@ -67,8 +67,12 @@ Timeline ticks are broad centuries, so the 1800s cannon represents the late cent
 includes industrial whaling. No event sequence, damage multiplier, silhouette
 fraction or era difficulty is a historical statistic or a calibrated ecological
 model. The 2100 selection is a hypothetical future scenario, not observed data or
-a quantitative projection. The declining silhouette row is illustrative; it must
-not be read as a shared monotonic population trajectory for all five species.
+a quantitative projection. The flock fade and remaining-percentage readout use an illustrative game curve:
+1700 = 100%, 1800 = 80%, 1900 = 55%, 2000 = 35%, 2100 = 20%, linearly interpolated
+between centuries. These authored percentages are not researched abundance
+estimates, and must not be read as a shared monotonic population trajectory for
+all five species. The 1700 baseline is a visual convention, not a claim that all
+populations were pristine then.
 Historical protections are counterfactual game choices, and modern schematic
 routes are not verified historical migration tracks. Wreck debris is a provisional
 interpretation of the sketch, specifically abandoned rigging/debris rather than

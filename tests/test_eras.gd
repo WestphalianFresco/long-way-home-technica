@@ -194,10 +194,10 @@ func test_strict_and_parity() -> void:
 	check(not Sim.restore(json(s)).is_empty(), "integral floats from JSON still accepted")
 
 	var src: String = FileAccess.get_file_as_string("res://tests/fixtures/legacy_simulation_v1.txt")
-	check(not src.is_empty(), "backup simulation found")
+	check(not src.is_empty(), "legacy simulation fixture found")
 	var Old := GDScript.new()
 	Old.source_code = src.replace("class_name Simulation", "")
-	check(Old.reload() == OK, "backup simulation compiles")
+	check(Old.reload() == OK, "legacy simulation fixture compiles")
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 2026
 	var games := 0

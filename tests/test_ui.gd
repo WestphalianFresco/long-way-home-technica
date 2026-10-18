@@ -34,11 +34,11 @@ func _run() -> void:
 	var timeline: Control = app.find_child("EraTimeline", true, false)
 	timeline.value = 1700
 	await settle()
-	var early_alpha: float = app.silhouettes[7].modulate.a
+	var early_alpha: float = app.flock_art.modulate.a
 	check(app.selected_era == 1700,"Timeline selects historical era")
 	check(app.threat_row.get_child_count() == 3,"Historical threat preview updates")
-	check(app.silhouettes[0].size.x > app.silhouettes[7].size.x * 2.0,"Pod mixes large and small whales")
-	check(absf(app.silhouettes[0].position.y - app.silhouettes[7].position.y) > 10.0,"Pod has a scattered formation")
+	check(app.remaining_label.text == "100.0%", "1700 is the 100% baseline")
+	check(is_equal_approx(early_alpha, 1.0), "Baseline shows the complete flock artwork")
 	var cards: Control = app.find_child("SpeciesCards",true,false)
 	check(cards.get_global_rect().end.y <= find_button(app,"START MIGRATION").global_position.y,"Species cards fit above start controls")
 	await capture("07-era-1700")
@@ -74,11 +74,11 @@ func _run() -> void:
 	root.push_input(release, true)
 	await settle()
 	check(absf(timeline.value - 1837.5) < 0.1,"Actual drag moves ruler without snapping")
-	var intermediate: float = app.silhouettes[7].modulate.a
+	var intermediate: float = app.flock_art.modulate.a
 	timeline.value = 1838.0
 	await settle()
-	check(app.silhouettes[7].modulate.a < intermediate and intermediate - app.silhouettes[7].modulate.a < 0.05,"Whale opacity changes smoothly within a century")
-	check("humpback-v1.png" in app.silhouettes[0].texture.resource_path,"Whale group reuses holographic portrait artwork")
+	check(app.flock_art.modulate.a < intermediate and intermediate - app.flock_art.modulate.a < 0.05,"Whale opacity changes smoothly within a century")
+	check("humpback-flock-v1.png" in app.flock_art.texture.resource_path,"Flock uses its composed species artwork")
 	var wheel := InputEventMouseButton.new()
 	wheel.button_index = MOUSE_BUTTON_WHEEL_RIGHT
 	wheel.pressed = true
@@ -95,8 +95,14 @@ func _run() -> void:
 	await capture("09-continuous-timeline")
 	timeline.value = 2100
 	await settle()
-	check(app.silhouettes[7].modulate.a < early_alpha,"Whale silhouettes fade toward future")
+	check(app.flock_art.modulate.a < early_alpha,"Whale silhouettes fade toward future")
 	check("scenario" in app.era_title.text.to_lower(),"Future era explicitly says scenario")
+	check(app.remaining_label.text == "20.0%" and is_equal_approx(app.flock_art.modulate.a, 0.2), "Future percentage and fade match the illustrative curve")
+	timeline.value = 1750
+	await settle()
+	check(app.remaining_label.text == "90.0%" and is_equal_approx(app.flock_art.modulate.a, 0.9), "Scrolling backward restores the matching percentage and artwork")
+	timeline.value = 2100
+	await settle()
 	await capture("08-era-2100")
 	press("SETTINGS")
 	await settle()
@@ -116,7 +122,7 @@ func _run() -> void:
 	await settle()
 	check(app.selected_id=="blue","Species button changes selection")
 	check(app.selected_era==1800 and is_equal_approx(app.timeline_year,1837.5),"Species selection preserves exact timeline position")
-	check("blue-v1.png" in app.silhouettes[0].texture.resource_path,"Group artwork follows selected species")
+	check("blue-flock-v2.png" in app.flock_art.texture.resource_path,"Group artwork follows selected species")
 	press("FIELD GUIDE")
 	await settle()
 	check(app.screen=="guide","Field guide opens")
@@ -189,7 +195,8 @@ func settle() -> void:
 func capture(name: String) -> void:
 	if DisplayServer.get_name()=="headless":
 		return
-	await RenderingServer.frame_post_draw
+	# The side preview may cover this window on macOS; request a frame explicitly.
+	RenderingServer.force_draw()
 	DirAccess.make_dir_recursive_absolute(output)
 	root.get_texture().get_image().save_png(output.path_join(name+".png"))
 

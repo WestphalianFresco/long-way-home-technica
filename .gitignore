@@ -8,3 +8,4 @@ previews/
 .env.*
 export_credentials.cfg
 *.log
+design/**/*.import

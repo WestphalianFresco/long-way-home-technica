@@ -7,6 +7,7 @@ const Eras = preload("res://scripts/era_data.gd")
 const SETTINGS_PATH := "user://settings.cfg"
 const SAVE_PATH := "user://long_way_home_save.json"
 const NARROW_WIDTH := 1000.0
+const FLOCK_VERSIONS := {"humpback": 1, "blue": 2, "gray": 2, "right": 1, "sperm": 1}
 
 var Sim: Script
 var Data: Script
@@ -14,13 +15,14 @@ var MapScript: Script
 
 var species_list: Array = []
 var selected_id := ""
-var selected_era := 2000
-var timeline_year := 2000.0
+var selected_era := 1700
+var timeline_year := 1700.0
 var era_title: Label
 var era_description: Label
 var era_difficulty: Label
 var threat_row: HFlowContainer
-var silhouettes: Array[TextureRect] = []
+var flock_art: TextureRect
+var remaining_label: Label
 var state: Dictionary = {}
 var screen := "select"
 var return_screen := "select"
@@ -56,7 +58,9 @@ func _ready() -> void:
 	if Data == null or Sim == null:
 		_show_missing()
 		return
-	species_list = Data.all_species()
+	species_list = []
+	for id in ["humpback", "blue", "gray", "right", "sperm"]:
+		species_list.append(Data.get_species(id))
 	if not species_list.is_empty():
 		selected_id = species_list[0].id
 	_load_settings()
@@ -127,67 +131,66 @@ func _build_select(root: VBoxContainer) -> void:
 	root.add_child(scroll)
 	var col := VBoxContainer.new()
 	col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	col.add_theme_constant_override("separation", 8)
+	col.add_theme_constant_override("separation", 6)
 	scroll.add_child(col)
-	var title := _label("Long Way Home", 38, UI.TEXT, heading)
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	col.add_child(title)
-	var subtitle := _label("Pick your setting", 20, UI.CYAN, heading)
-	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	col.add_child(subtitle)
 	var ocean := _bracket_panel()
 	var ocean_col := ocean.get_child(0) as VBoxContainer
 	ocean_col.add_child(_label("01 / CHOOSE AN ERA", 12, UI.MUTED, mono))
 	var pod := Control.new()
 	pod.name = "HolographicPod"
-	pod.custom_minimum_size.y = 178
+	pod.custom_minimum_size.y = 330
 	pod.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	silhouettes.clear()
-	for i in range(10):
-		var whale := TextureRect.new()
-		whale.texture = load("res://assets/whales/%s-v1.png" % selected_id)
-		whale.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		whale.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		whale.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-		whale.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		silhouettes.append(whale)
-		pod.add_child(whale)
-	pod.resized.connect(func() -> void:
-		# A loose pod, with overlapping depths, adult sizes and smaller companions.
-		# Positions and sizes stay fixed as the timeline changes; only alpha changes.
-		var formation := [
-			Vector3(0.19, 0.52, 1.00), Vector3(0.59, 0.46, 1.12),
-			Vector3(0.81, 0.66, 0.76), Vector3(0.37, 0.67, 0.74),
-			Vector3(0.28, 0.19, 0.44), Vector3(0.70, 0.16, 0.47),
-			Vector3(0.07, 0.78, 0.42), Vector3(0.48, 0.21, 0.36),
-			Vector3(0.91, 0.28, 0.48), Vector3(0.52, 0.87, 0.39)]
-		for i in range(pod.get_child_count()):
-			var whale: TextureRect = pod.get_child(i)
-			var point: Vector3 = formation[i]
-			var width := minf(278.0, pod.size.x * 0.225) * point.z
-			whale.size = Vector2(width, width * 0.5625)
-			whale.position = Vector2(pod.size.x * point.x - whale.size.x * 0.5, clampf(pod.size.y * point.y - whale.size.y * 0.5, 0, pod.size.y - whale.size.y)))
+	flock_art = TextureRect.new()
+	flock_art.name = "FlockArtwork"
+	flock_art.texture = load("res://assets/whales/flocks/%s-flock-v%d.png" % [selected_id, FLOCK_VERSIONS[selected_id]])
+	flock_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	flock_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	flock_art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	flock_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	flock_art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	pod.add_child(flock_art)
+	var readout := VBoxContainer.new()
+	readout.position = Vector2(12, 42)
+	readout.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	readout.add_theme_constant_override("separation", 5)
+	readout.add_child(_label("Long Way Home", 28, UI.TEXT, heading))
+	readout.add_child(_label("Pick your setting", 18, UI.CYAN, heading))
+	var breathing_room := Control.new()
+	breathing_room.custom_minimum_size.y = 26
+	readout.add_child(breathing_room)
+	readout.add_child(_label("ILLUSTRATIVE POPULATION", 11, UI.MUTED, mono))
+	remaining_label = _label("", 30, UI.CYAN, mono)
+	remaining_label.name = "RemainingPercentage"
+	readout.add_child(remaining_label)
+	readout.add_child(_label("REMAINING / 1700 = 100%", 11, UI.MUTED, mono))
+	pod.add_child(readout)
 	ocean_col.add_child(pod)
 	var timeline: Control = preload("res://scripts/era_timeline.gd").new()
 	timeline.name = "EraTimeline"
 	timeline.value = timeline_year
 	ocean_col.add_child(timeline)
-	var info := HBoxContainer.new()
+	var info := VBoxContainer.new()
+	info.custom_minimum_size.x = 244
+	info.add_theme_constant_override("separation", 10)
+	pod.add_child(info)
+	pod.resized.connect(func() -> void:
+		info.position = Vector2(pod.size.x - 256, 42)
+		info.size.x = 244)
 	era_title = _label("", 20, UI.TEXT, heading)
 	era_title.name = "EraTitle"
-	era_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	era_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	info.add_child(era_title)
-	era_difficulty = _label("", 12, UI.AMBER, mono)
+	era_difficulty = _label("", 11, UI.AMBER, mono)
 	info.add_child(era_difficulty)
-	ocean_col.add_child(info)
 	era_description = _para("", 15, UI.MUTED)
 	era_description.visible = false
-	ocean_col.add_child(era_description)
+	info.add_child(era_description)
 	threat_row = HFlowContainer.new()
 	threat_row.name = "EraThreats"
 	threat_row.add_theme_constant_override("h_separation", 22)
-	ocean_col.add_child(threat_row)
-	ocean_col.add_child(_para("Illustrative decline, not population counts. Real trends differ by species and population, including recoveries.", 12, UI.MUTED))
+	threat_row.add_theme_constant_override("v_separation", 5)
+	info.add_child(threat_row)
+	ocean_col.add_child(_para("Illustrative game curve, not historical population data. Real populations can recover. 2100 is a projection scenario.", 12, UI.MUTED))
 	col.add_child(ocean)
 	timeline.value_changed.connect(func(value: float) -> void:
 		timeline_year = value
@@ -209,7 +212,7 @@ func _build_select(root: VBoxContainer) -> void:
 		card.toggle_mode = true
 		card.button_pressed = entry.id == selected_id
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		card.custom_minimum_size = Vector2(0, 154)
+		card.custom_minimum_size = Vector2(0, 138)
 		card.clip_text = true
 		card.tooltip_text = entry.name + " · " + entry.tagline
 		for key in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color", "font_hover_pressed_color"]:
@@ -224,7 +227,7 @@ func _build_select(root: VBoxContainer) -> void:
 		margin.add_child(box)
 		var art: Control = load("res://scripts/static_whale.gd").new()
 		art.species_id = entry.id
-		art.custom_minimum_size.y = 78
+		art.custom_minimum_size.y = 64
 		box.add_child(art)
 		var name_label := _label(entry.name, 17, UI.TEXT, heading)
 		name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -282,13 +285,18 @@ func _refresh_era() -> void:
 		threat_row.add_child(item)
 
 
-func _refresh_whale_fade() -> void:
+func _remaining_fraction() -> float:
 	var position := clampf((timeline_year - 1700.0) / 100.0, 0.0, 4.0)
 	var lower := mini(int(position), 3)
-	var fraction := lerpf(float(Eras.RECORDS[lower].silhouette_fraction), float(Eras.RECORDS[lower + 1].silhouette_fraction), position - lower)
-	for i in range(silhouettes.size()):
-		# Overlapping fade ranges: several whales dissolve together as time moves.
-		silhouettes[i].modulate.a = smoothstep(0.0, 2.5, fraction * 12.5 - i)
+	return lerpf(float(Eras.RECORDS[lower].silhouette_fraction), float(Eras.RECORDS[lower + 1].silhouette_fraction), position - lower)
+
+
+func _refresh_whale_fade() -> void:
+	var fraction := _remaining_fraction()
+	# One composed artwork retains its individual poses and scale relationships.
+	# Opacity and the readout share the same continuous, illustrative baseline.
+	flock_art.modulate.a = fraction
+	remaining_label.text = "%0.1f%%" % (fraction * 100.0)
 
 
 func _threat_icon(id: String, extent: int = 40) -> TextureRect:
