@@ -1,0 +1,61 @@
+{
+  "status": "ready",
+  "file_key": "FJBJLum6Mxbx8i5fPdOCTs",
+  "target_node": "5:2",
+  "figma_url": "https://www.figma.com/design/FJBJLum6Mxbx8i5fPdOCTs/Five-Whale-Sketches?node-id=5-2",
+  "layout": "Two sections, five individually labeled artworks each: Individual Whales and Whale Flocks. Same species order in both. Retain Obstacle Icons separately.",
+  "project_root": "/Users/WilliamFan/long-way-home",
+  "mode": "New compositions generated from individual sketch references; original images preserved.",
+  "species": [
+    {
+      "id": "humpback",
+      "name": "Humpback Whale",
+      "position": 1,
+      "source": "/Users/WilliamFan/.codex/generated_images/01a14c99-4dc8-7ea1-a9c5-761fec9cd694/exec-274c4568-20c1-49d6-938f-060d161759e8.png",
+      "individual_source": "/Users/WilliamFan/Documents/Obsidian Vault/Technica 2026 - Whale Atlas/Assets/Species Sketches/humpback-sketch-v1.png",
+      "individual": "assets/whales/sketches/humpback-sketch-v1.png",
+      "flock": "assets/whales/flocks/humpback-flock-v1.png",
+      "prompt": "Use case: stylized-concept / composition derived from reference. The supplied image is a species and rendering-style reference. Replace its solitary-whale composition with a single beautifully art-directed flock/pod ARTWORK of approximately7to9 whales of this SAME SPECIES. This is an original illustration, not a UI, sprite sheet, collage or repeated clip art. Each whale must have an individually drawn silhouette, perspective, body curvature and pose. Mix large foreground adults, medium animals and small companions; depth through scale, overlap and subtle luminous haze. Arrange as one flowing natural composition with intentional negative space, never a grid, single row, evenly spaced lineup or identical pasted copies. Match the reference's intricate icy blue-white contour-line drawing and thousands of tiny luminous speckles, delicate cyan edge light, translucent blue volumes against near-black navy. Atmospheric and restrained, inspired by Death Stranding's holographic scientific art direction. A polished gallery art piece, not a photoreal underwater photograph. Whales anatomically recognizable, no extra fins or fused bodies. Keep complete primary whales within frame. Wide landscape3:2. NO text, labels, logos, UI, borders, axes, numbers or watermarks. All whales are humpbacks, with knobbly broad heads, very long scalloped pectoral flippers, arched backs and broad horizontal tail flukes. Composition: A graceful upward diagonal current: two large adults in the foreground, medium companions receding above, and two small calves sheltering near an adult. Some roll slightly to reveal long flippers; others appear in side or dorsal three-quarter view."
+    },
+    {
+      "id": "blue",
+      "name": "Blue Whale",
+      "position": 2,
+      "source": "/Users/WilliamFan/.codex/generated_images/01a14c99-4dc8-7ea1-a9c5-761fec9cd694/exec-d09348ba-d31a-4b1d-9a45-7d9a25024b13.png",
+      "individual_source": "/Users/WilliamFan/Documents/Obsidian Vault/Technica 2026 - Whale Atlas/Assets/Species Sketches/blue-sketch-v1.png",
+      "individual": "assets/whales/sketches/blue-sketch-v1.png",
+      "flock": "assets/whales/flocks/blue-flock-v1.png",
+      "prompt": "Use case: stylized-concept / composition derived from reference. The supplied image is a species and rendering-style reference. Replace its solitary-whale composition with a single beautifully art-directed flock/pod ARTWORK of approximately7to9 whales of this SAME SPECIES. This is an original illustration, not a UI, sprite sheet, collage or repeated clip art. Each whale must have an individually drawn silhouette, perspective, body curvature and pose. Mix large foreground adults, medium animals and small companions; depth through scale, overlap and subtle luminous haze. Arrange as one flowing natural composition with intentional negative space, never a grid, single row, evenly spaced lineup or identical pasted copies. Match the reference's intricate icy blue-white contour-line drawing and thousands of tiny luminous speckles, delicate cyan edge light, translucent blue volumes against near-black navy. Atmospheric and restrained, inspired by Death Stranding's holographic scientific art direction. A polished gallery art piece, not a photoreal underwater photograph. Whales anatomically recognizable, no extra fins or fused bodies. Keep complete primary whales within frame. Wide landscape3:2. NO text, labels, logos, UI, borders, axes, numbers or watermarks. All whales are blue whales with exceptionally long sleek tapered bodies, broad smooth U-shaped rostra, modest short slender flippers, tiny dorsal fins far back and broad horizontal tail flukes. No humpback head bumps or giant humpback flippers. Composition: An expansive sweeping crescent of elongated whales crossing a deep ocean void, one enormous foreground adult and a smaller companion, with distant individuals receding in a flowing diagonal. Vary foreshortening and body bends."
+    },
+    {
+      "id": "gray",
+      "name": "Gray Whale",
+      "position": 3,
+      "source": "/Users/WilliamFan/.codex/generated_images/01a14c99-4dc8-7ea1-a9c5-761fec9cd694/exec-09f38234-38c5-4097-a99d-5c76adb436cf.png",
+      "individual_source": "/Users/WilliamFan/Documents/Obsidian Vault/Technica 2026 - Whale Atlas/Assets/Species Sketches/gray-sketch-v1.png",
+      "individual": "assets/whales/sketches/gray-sketch-v1.png",
+      "flock": "assets/whales/flocks/gray-flock-v1.png",
+      "prompt": "Use case: stylized-concept / composition derived from reference. The supplied image is a species and rendering-style reference. Replace its solitary-whale composition with a single beautifully art-directed flock/pod ARTWORK of approximately7to9 whales of this SAME SPECIES. This is an original illustration, not a UI, sprite sheet, collage or repeated clip art. Each whale must have an individually drawn silhouette, perspective, body curvature and pose. Mix large foreground adults, medium animals and small companions; depth through scale, overlap and subtle luminous haze. Arrange as one flowing natural composition with intentional negative space, never a grid, single row, evenly spaced lineup or identical pasted copies. Match the reference's intricate icy blue-white contour-line drawing and thousands of tiny luminous speckles, delicate cyan edge light, translucent blue volumes against near-black navy. Atmospheric and restrained, inspired by Death Stranding's holographic scientific art direction. A polished gallery art piece, not a photoreal underwater photograph. Whales anatomically recognizable, no extra fins or fused bodies. Keep complete primary whales within frame. Wide landscape3:2. NO text, labels, logos, UI, borders, axes, numbers or watermarks. All whales are gray whales with tapered robust bodies, narrow arched heads, short compact broad paddle flippers, no dorsal fin, low dorsal hump followed by knuckles, and mottled barnacle patches. Flippers should be short, about12percent of body length, never the long humpback flippers. Composition: A softly curving procession with several adults, two small companions tucked between them and other whales fading into distant blue. Three-quarter side and top views, organic spacing and individual poses."
+    },
+    {
+      "id": "right",
+      "name": "North Atlantic Right Whale",
+      "position": 4,
+      "source": "/Users/WilliamFan/.codex/generated_images/01a14c99-4dc8-7ea1-a9c5-761fec9cd694/exec-1e5f7ad1-7a00-413c-8783-b1b92e63abf1.png",
+      "individual_source": "/Users/WilliamFan/Documents/Obsidian Vault/Technica 2026 - Whale Atlas/Assets/Species Sketches/right-sketch-v1.png",
+      "individual": "assets/whales/sketches/right-sketch-v1.png",
+      "flock": "assets/whales/flocks/right-flock-v1.png",
+      "prompt": "Use case: stylized-concept / composition derived from reference. The supplied image is a species and rendering-style reference. Replace its solitary-whale composition with a single beautifully art-directed flock/pod ARTWORK of approximately7to9 whales of this SAME SPECIES. This is an original illustration, not a UI, sprite sheet, collage or repeated clip art. Each whale must have an individually drawn silhouette, perspective, body curvature and pose. Mix large foreground adults, medium animals and small companions; depth through scale, overlap and subtle luminous haze. Arrange as one flowing natural composition with intentional negative space, never a grid, single row, evenly spaced lineup or identical pasted copies. Match the reference's intricate icy blue-white contour-line drawing and thousands of tiny luminous speckles, delicate cyan edge light, translucent blue volumes against near-black navy. Atmospheric and restrained, inspired by Death Stranding's holographic scientific art direction. A polished gallery art piece, not a photoreal underwater photograph. Whales anatomically recognizable, no extra fins or fused bodies. Keep complete primary whales within frame. Wide landscape3:2. NO text, labels, logos, UI, borders, axes, numbers or watermarks. All whales are North Atlantic right whales with stocky rounded bodies, very large heads, strongly bowed mouths, callosity patches on rostrum, short broad paddle flippers, no dorsal fins, and no throat grooves. Composition: A quiet layered cluster of rounded whales drifting in a loose spiral, an adult and small companion dominating one foreground area and other whales receding around them in a spacious arc. Distinct pose for each animal."
+    },
+    {
+      "id": "sperm",
+      "name": "Sperm Whale",
+      "position": 5,
+      "source": "/Users/WilliamFan/.codex/generated_images/01a14c99-4dc8-7ea1-a9c5-761fec9cd694/exec-98fb28ab-b2c1-46dc-b440-7f84753b79f4.png",
+      "individual_source": "/Users/WilliamFan/Documents/Obsidian Vault/Technica 2026 - Whale Atlas/Assets/Species Sketches/sperm-sketch-v1.png",
+      "individual": "assets/whales/sketches/sperm-sketch-v1.png",
+      "flock": "assets/whales/flocks/sperm-flock-v1.png",
+      "prompt": "Use case: stylized-concept / composition derived from reference. The supplied image is a species and rendering-style reference. Replace its solitary-whale composition with a single beautifully art-directed flock/pod ARTWORK of approximately7to9 whales of this SAME SPECIES. This is an original illustration, not a UI, sprite sheet, collage or repeated clip art. Each whale must have an individually drawn silhouette, perspective, body curvature and pose. Mix large foreground adults, medium animals and small companions; depth through scale, overlap and subtle luminous haze. Arrange as one flowing natural composition with intentional negative space, never a grid, single row, evenly spaced lineup or identical pasted copies. Match the reference's intricate icy blue-white contour-line drawing and thousands of tiny luminous speckles, delicate cyan edge light, translucent blue volumes against near-black navy. Atmospheric and restrained, inspired by Death Stranding's holographic scientific art direction. A polished gallery art piece, not a photoreal underwater photograph. Whales anatomically recognizable, no extra fins or fused bodies. Keep complete primary whales within frame. Wide landscape3:2. NO text, labels, logos, UI, borders, axes, numbers or watermarks. All whales are sperm whales with large block-shaped rectangular heads, blunt foreheads, narrow lower jaws, small rounded flippers, low dorsal humps and wrinkled tapering bodies, broad horizontal tail flukes. Composition: A cinematic gathering with an adult and small calf in the foreground, several whales curving through the middle depth and a few distant silhouettes ascending gently. Different body orientations and viewing angles, calm coherent movement."
+    }
+  ]
+}

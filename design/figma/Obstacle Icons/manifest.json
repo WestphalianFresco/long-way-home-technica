@@ -1,0 +1,118 @@
+{
+  "board": "Long Way Home \u2014 Obstacle Icons",
+  "layout": "3 columns by 3 rows; each icon a separate editable vector with a separate text label",
+  "unassigned_slot": 10,
+  "items": [
+    {
+      "number": 1,
+      "id": "sailing",
+      "label": "Sailing ship",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/01-sailing-hud-v2.svg",
+      "x": 0,
+      "y": 0,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    },
+    {
+      "number": 2,
+      "id": "harpoon",
+      "label": "Harpoon cannon",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/02-harpoon-hud-v2.svg",
+      "x": 260,
+      "y": 0,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    },
+    {
+      "number": 3,
+      "id": "industrial",
+      "label": "Industrial whaling",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/03-industrial-hud-v2.svg",
+      "x": 520,
+      "y": 0,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    },
+    {
+      "number": 4,
+      "id": "wreck",
+      "label": "Shipwreck debris",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/04-wreck-hud-v2.svg",
+      "x": 0,
+      "y": 220,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    },
+    {
+      "number": 5,
+      "id": "plastic",
+      "label": "Pollution",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/05-plastic-hud-v2.svg",
+      "x": 260,
+      "y": 220,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    },
+    {
+      "number": 6,
+      "id": "warming",
+      "label": "Global warming",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/06-warming-hud-v2.svg",
+      "x": 520,
+      "y": 220,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    },
+    {
+      "number": 7,
+      "id": "gear",
+      "label": "Nets",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/07-gear-hud-v2.svg",
+      "x": 0,
+      "y": 440,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    },
+    {
+      "number": 8,
+      "id": "noise",
+      "label": "Underwater noise",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/08-noise-hud-v2.svg",
+      "x": 260,
+      "y": 440,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    },
+    {
+      "number": 9,
+      "id": "strike",
+      "label": "Commercial ships",
+      "file": "/Users/WilliamFan/long-way-home/design/figma/Obstacle Icons/09-strike-hud-v2.svg",
+      "x": 520,
+      "y": 440,
+      "icon_size": 96,
+      "style_version": "hud-v2"
+    }
+  ],
+  "art_direction": {
+    "reference": "Death Stranding-inspired ocean observatory HUD; original artwork",
+    "background": "#050B12",
+    "panel": "#081521",
+    "primary_line": "#A8E6FF",
+    "muted_line": "#456170",
+    "text": "#EAF4FA",
+    "secondary_text": "#94A9B6",
+    "accent": "#E4B76C",
+    "icon_stroke_width_in_64px_viewbox": 1.75,
+    "typography": "IBM Plex Mono for numbered technical labels; Space Grotesk for page heading",
+    "frames": "Open corner brackets and thin rules; generous spacing; restrained amber accents",
+    "whales": "Keep the existing blue-white luminous contour and point-cloud sketches; do not restyle or regenerate",
+    "avoid": [
+      "rounded colorful app tiles",
+      "heavy neon glow",
+      "cartoon shading",
+      "official game logos"
+    ],
+    "layering": "Keep each SVG, species image, text label and frame separate and selectable"
+  }
+}
